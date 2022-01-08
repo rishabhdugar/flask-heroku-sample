@@ -57,12 +57,10 @@ def accessToken():
 
   shop = shopify.Shop.current() # Get the current shop
   #product = shopify.Product.find(179761209) # Get a specific product
-  print(shop)
   # execute a graphQL call
-  return shopify.GraphQL().execute("{ shop { name id } }")
+  u = User('shop', 'shopresp')
+  return redirect(url_for('index'))
 
-
-  print(res)
 if __name__ == '__main__':
   db.create_all()
   port = int(os.environ.get('PORT', 5000))
