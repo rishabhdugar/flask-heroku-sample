@@ -34,7 +34,7 @@ def user():
   return redirect(url_for('index'))
 
 @app.route('/userNew', methods=['POST'])
-def user():
+def userNew():
   u = User(request.form['name'], request.form['email'])
   db.session.add(u)
   db.session.commit()
