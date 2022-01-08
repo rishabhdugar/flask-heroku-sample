@@ -38,7 +38,7 @@ def userNew():
   u = User(request.form['name'], request.form['email'])
   db.session.add(u)
   db.session.commit()
-  return {"status":"success"}
+  return redirect(url_for('index'))
 
 if __name__ == '__main__':
   db.create_all()
