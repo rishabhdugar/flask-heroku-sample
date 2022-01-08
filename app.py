@@ -61,6 +61,7 @@ def accessToken():
   # execute a graphQL call
   u = User('shop', 'shopresp')
   print(shop)
+  products = shopify.GraphQL().execute("{products (first: 3) {edges {node {id title } } } }")
   print(products)
   return redirect(url_for('index'))
 
