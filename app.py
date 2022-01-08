@@ -56,10 +56,12 @@ def accessToken():
   shopify.ShopifyResource.activate_session(session)
 
   shop = shopify.Shop.current() # Get the current shop
+  products = shopify.Product.find(limit=50, page=1)
   #product = shopify.Product.find(179761209) # Get a specific product
   # execute a graphQL call
   u = User('shop', 'shopresp')
   print(shop)
+  print(products)
   return redirect(url_for('index'))
 
 if __name__ == '__main__':
