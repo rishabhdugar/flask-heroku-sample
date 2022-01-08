@@ -59,6 +59,7 @@ def accessToken():
   #product = shopify.Product.find(179761209) # Get a specific product
   # execute a graphQL call
   u = User('shop', 'shopresp')
+  print(shop)
   return redirect(url_for('index'))
 
 if __name__ == '__main__':
