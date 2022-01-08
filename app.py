@@ -33,6 +33,13 @@ def user():
   db.session.commit()
   return redirect(url_for('index'))
 
+@app.route('/userNew', methods=['POST'])
+def user():
+  u = User(request.form['name'], request.form['email'])
+  db.session.add(u)
+  db.session.commit()
+  return {"status":"success"}
+
 if __name__ == '__main__':
   db.create_all()
   port = int(os.environ.get('PORT', 5000))
