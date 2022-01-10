@@ -51,7 +51,7 @@ def userNew():
 def accessToken():
   shopify.Session.setup(api_key=API_KEY, secret=API_SECRET)
   shop_url = request.form['shop_url']
-  session = shopify.Session(shop_url, api_version)
+  session = shopify.Session(shop_url, API_VERSION)
   request_params = {"code": request.form['code'], 
   "hmac": request.form['hmac'], 
   "host":request.form['host'],
