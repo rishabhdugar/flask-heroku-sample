@@ -62,7 +62,8 @@ def accessToken():
   print(access_token)
   return jsonify(
         access_token=access_token,
-        status="200"
+        status="OK",
+        code="200"
   )
 
 @app.route('/products', methods=['POST'])
