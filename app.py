@@ -50,12 +50,12 @@ def userNew():
 @app.route('/accessToken', methods=['POST'])
 def accessToken():
   shopify.Session.setup(api_key=API_KEY, secret=API_SECRET)
-
+  shop_url = request.form['shop_url']
   session = shopify.Session(shop_url, api_version)
   request_params = {"code": request.form['code'], 
   "hmac": request.form['hmac'], 
   "host":request.form['host'],
-  "shop":request.form['shop_url'],
+  "shop":shop_url,
   "state":request.form['state'],
   "timestamp": request.form['timestamp']};
   access_token = session.request_token(request_params) # request_token will validate hmac and timing attacks
