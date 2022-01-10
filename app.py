@@ -58,6 +58,7 @@ def accessToken():
   "shop":shop_url,
   "state":request.form['state'],
   "timestamp": request.form['timestamp']};
+  print(request_params)
   access_token = session.request_token(request_params) # request_token will validate hmac and timing attacks
   print(access_token)
   return jsonify(
