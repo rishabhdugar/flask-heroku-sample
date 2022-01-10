@@ -65,6 +65,24 @@ def accessToken():
   print(products)
   return redirect(url_for('index'))
 
+@app.route('/loginUrl', methods=['POST'])
+def loginUrl():
+  API_KEY = '0072294b270c3a24e9a9dfda9bf0fc31'
+  API_SECRET = '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'
+  shopify.Session.setup(api_key=API_KEY, secret=API_SECRET)
+
+  shop_url = request.form['shop_url']
+  api_version = '2020-10'
+  state = binascii.b2a_hex(os.urandom(15)).decode("utf-8")
+  redirect_uri = request.form['redirect_uri']
+  scopes = ['read_products', 'read_orders']
+
+  newSession = shopify.Session(shop_url, api_version)
+  auth_url = newSession.create_permission_url(scopes, redirect_uri, state)
+  # redirect to auth_url
+  return auth_url
+
+
 if __name__ == '__main__':
   db.create_all()
   port = int(os.environ.get('PORT', 5000))
