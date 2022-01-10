@@ -80,7 +80,9 @@ def loginUrl():
   newSession = shopify.Session(shop_url, api_version)
   auth_url = newSession.create_permission_url(scopes, redirect_uri, state)
   # redirect to auth_url
-  return auth_url
+  return jsonify(
+        auth_url=auth_url
+  )
 
 
 if __name__ == '__main__':
