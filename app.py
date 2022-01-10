@@ -51,17 +51,19 @@ def userNew():
 def accessToken():
   shopify.Session.setup(api_key=API_KEY, secret=API_SECRET)
 
-  shop_url = "9xworks.myshopify.com"
-  
   session = shopify.Session(shop_url, api_version)
-  request_params = {"code": "9f20acba867fab88f9425cf7e9e6bc91", 
-  "hmac": "083a396b15e0018ea0e0f3eb7d32510a3ff4fc3faae6d8c8c3c5743bc98d6d03", 
-  "host":"OXh3b3Jrcy5teXNob3BpZnkuY29tL2FkbWlu",
-  "shop":"9xworks.myshopify.com",
-  "state":"91519aa793a1a9ff05163c9cf51e01",
-  "timestamp": "1641618459"}
+  request_params = {"code": request.form['code'], 
+  "hmac": request.form['hmac'], 
+  "host":request.form['host'],
+  "shop":request.form['shop_url'],
+  "state":request.form['state'],
+  "timestamp": request.form['timestamp']};
   access_token = session.request_token(request_params) # request_token will validate hmac and timing attacks
   print(access_token)
+  return jsonify(
+        access_token=access_token,
+        status="200"
+  )
 
 @app.route('/products', methods=['POST'])
 def products():
