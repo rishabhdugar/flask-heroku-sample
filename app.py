@@ -10,8 +10,8 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 DATABASE_URL = os.environ.get('DATABASE_URL', 'sqlite:////tmp/flask_app.db')
-API_KEY = '0072294b270c3a24e9a9dfda9bf0fc31'
-API_SECRET = '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'
+API_KEY = 'ef42222e519fcc3f6fa4ab544cd03881'
+API_SECRET = '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'
 API_VERSION = '2020-10'
 
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
@@ -67,8 +67,6 @@ def accessToken():
 
 @app.route('/products', methods=['POST'])
 def products():
-  API_KEY = '0072294b270c3a24e9a9dfda9bf0fc31'
-  API_SECRET = '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'
   shopify.Session.setup(api_key=API_KEY, secret=API_SECRET)
 
   shop_url = "9xworks.myshopify.com"
