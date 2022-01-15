@@ -5,9 +5,11 @@ import os
 
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from flask_sqlalchemy import SQLAlchemy
-
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+
+cors = CORS(app)
 
 DATABASE_URL = os.environ.get('DATABASE_URL', 'sqlite:////tmp/flask_app.db')
 API_KEY = '0072294b270c3a24e9a9dfda9bf0fc31'
@@ -15,6 +17,7 @@ API_SECRET = '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'
 API_VERSION = '2020-10'
 
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+app.config['CORS_HEADERS'] = 'Content-Type'
 db = SQLAlchemy(app)
 
 
